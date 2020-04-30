@@ -1,5 +1,5 @@
 {
-  "title": "Deploy a multi-node Kuberenetes cluster using kubeadm",
+  "title": "Deploy a Multi-node Kuberenetes Cluster with Kubeadm",
   "description": "Bootstrap a Kubernetes two node cluster using kubeadm and weave networking",
   "difficulty": "Intermediate",
   "time": "20 minutes",

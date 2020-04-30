@@ -9,13 +9,18 @@ The Kubernetes components have been pre-installed onto both the master and worke
 
  <pre>kubeadm version: &version.Info{Major:"1", Minor:"14", GitVersion:"v1.14.0", GitCommit:"641856db18352033a0d96dbc99153fa3b27298e5", GitTreeState:"clean", BuildDate:"2019-03-25T15:51:21Z", GoVersion:"go1.12.1", Compiler:"gc", Platform:"linux/amd64"}</pre>
 
- Looking at the `GitVersion`, you can see kubernetes is at version 
+ Looking at the `GitVersion`, you can see kubernetes is at version 1.14.0
 
-## Update the Ubuntu package list
+## Update the Ubuntu Package List
 To see the latest versions of kubernetes available, we need to first update the Ubuntu package.  On the master node run:
 
 `sudo apt update`{{execute HOST1}}
 
 Repeat the update on the worker node:
 
-`sudo apt update`{{execute HOST1}}
+`sudo apt update`{{execute HOST2}}
+
+## Check Available Kubernetes Versions
+To see the available Kubernetes versions, run the following on either the master or worker node:
+
+`apt cache madison kubeadm`{{execute HOST1}}
