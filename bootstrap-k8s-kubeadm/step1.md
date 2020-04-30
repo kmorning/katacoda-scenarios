@@ -23,4 +23,24 @@ Repeat the update on the worker node:
 ## Check Available Kubernetes Versions
 To see the available Kubernetes versions, run the following on either the master or worker node:
 
-`apt cache madison kubeadm`{{execute HOST1}}
+`apt-cache madison kubeadm`{{execute HOST1}}
+
+## Upgrade Kubernetes
+From the list, will pick the latest version from 1.17.x, which in this case is 1.17.5.  There are new versions available, but we'll save that for a subsequent lesson where we'll upgrade a Kubernetes cluster that is up and running.
+
+Execute the following command on the master node,
+
+`sudo apt install kubeadm=1.17.5-00 kubectl=1.17.5-00 kubelet=1.17.5-00`{{execute HOST1}}
+
+and then on the worker node:
+
+`sudo apt install kubeadm=1.17.5-00 kubectl=1.17.5-00 kubelet=1.17.5-00`{{execute HOST2}}
+
+## Place a Hold on the Kubernetes Components
+On a live Kubernetes cluster, we need to follow a set procedure for upgrading, so we want to hold it's current version so that it doesn't get upgraded during an install of another package or server upgrade.
+
+On the master node execute
+
+`apt-mark hold kubeadm kubectl kubelet`{{execute HOST1}} and repeat on the worker node.
+
+`apt-mark hold kubeadm kubectl kubelet`{{execute HOST2}}
