@@ -30,17 +30,14 @@ From the list, will pick the latest version from 1.17.x, which in this case is 1
 
 Execute the following command on the master node,
 
-`sudo apt install kubeadm=1.17.5-00 kubectl=1.17.5-00 kubelet=1.17.5-00`{{execute HOST1}}
+`sudo apt install kubeadm=1.17.5-00 kubectl=1.17.5-00 kubelet=1.17.5-00`{{execute HOST1}}, and then on the worker node:
 
-and then on the worker node:
-
-`sudo apt install kubeadm=1.17.5-00 kubectl=1.17.5-00 kubelet=1.17.5-00`{{execute HOST2}}
+`sudo apt install -y kubeadm=1.17.5-00 kubectl=1.17.5-00 kubelet=1.17.5-00`{{execute HOST2}}
 
 ## Place a Hold on the Kubernetes Components
 On a live Kubernetes cluster, we need to follow a set procedure for upgrading, so we want to hold it's current version so that it doesn't get upgraded during an install of another package or server upgrade.
 
-On the master node execute
+On the master node execute,
 
-`apt-mark hold kubeadm kubectl kubelet`{{execute HOST1}} and repeat on the worker node.
-
+`apt-mark hold kubeadm kubectl kubelet`{{execute HOST1}}, and repeat on the worker node.
 `apt-mark hold kubeadm kubectl kubelet`{{execute HOST2}}

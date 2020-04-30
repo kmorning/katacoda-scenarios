@@ -6,7 +6,7 @@
   "details": {
     "steps": [
       {
-        "title": "Step 1 - Check and upgrade Kubernetes components",
+        "title": "Step 1 - Check and Upgrade Kubernetes Components",
         "text": "step1.md"
       }
     ],
