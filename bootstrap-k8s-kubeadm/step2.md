@@ -1,6 +1,8 @@
 
 ## Initialize the Control-Plane Node
-The `kube admin init` command is used to initialize the control-plane node (or nodes in an HA setup), and run by itself with no other arguments, will default the service cidr network to "10.96.0.0/12" and the dns domain to "cluster.local".  We will use the <pre>--service-cidr</pre> and <pre>--service-dns-domain</pre> arguments to pass our own desired values.  We are using what is called a stacked control-plane, which means our master node and control-plane node are one in the same, though it's possible to have an external control-plane separate of the master.  It's also possible to have mutliple control-planes/masters for a high-availibility cluster.
+The `kube admin init` command is used to initialize the control-plane node (or nodes in an HA setup), and run by itself with no other arguments, will default the service cidr network to "10.96.0.0/12" and the dns domain to "cluster.local".  We will use the <i>--service-cidr</i> and <i>--service-dns-domain</i> arguments to pass our own desired values.  We are using what is called a stacked control-plane, which means our master node and control-plane node are one in the same, though it's possible to have an external control-plane separate of the master.  It's also possible to have mutliple control-planes/masters for a high-availibility cluster.
+
+Note that in a production environment,  the service cidr ip range must not overlap any other ip range in the network.
 
 On the master node, execute the following to initialize the control plane:
 
@@ -27,10 +29,6 @@ Keep in might that the config copied above contains private keys which gives ful
 ## Check Node Status
 The nodes can be listed using:
 
-`kubectl get nodes`{{exec HOST1}}
+`kubectl get nodes`{{execute HOST1}}
 
-For now, the cluster consists of only a single master node.  It's status is shown as `NotReady`, as we still need to install a pod network add-on.
-
-
-
-curl -SL "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')&env.IPALLOC_RANGE=172.28.0.0/16&env.NO_MASQ_LOCAL=1" | kubectl apply -f -
+For now, the cluster consists of only a single master node.  It's status is shown as `NotReady` as we still need to install a pod network add-on, which we'll do in the next step.

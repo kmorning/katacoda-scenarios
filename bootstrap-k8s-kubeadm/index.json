@@ -12,6 +12,9 @@
       {
         "title": "Step 2 - Initialize the Kubernetes Cluster",
         "text": "step2.md"
+      },
+      {
+        "title": "Install a Pod Networking Addon"
       }
     ],
     "intro": {
