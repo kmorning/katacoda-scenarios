@@ -1,5 +1,5 @@
 
-##Joining your node
+## Joining your Node
 The nodes are where your workloads (containers and Pods, etc) run. To add a new node to your cluster, we'll use the join command you copied, hopefully, in step 2.  If you don't have the join command, you can generate it again by running the following command on the master node:
 
 `sudo kubeadm token create --print-join-command`{{execute HOST1}}
