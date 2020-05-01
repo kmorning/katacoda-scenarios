@@ -23,6 +23,8 @@ Install weave net using the command below:
 ## Check the Node Status
 Use the command below to check the status of the master node, now that pod network is intalled.  You might need to issue it a few times, but eventually the master node should show as `Ready`.
 
+`kubectl get nodes`{{execute HOST1}}
+
 ## Show Pods
 The following command will show all the pods in the Kubernetes cluster.  They should all be in the `Running` state right now.
 

@@ -16,6 +16,10 @@
       {
         "title": "Install a Pod Networking Addon",
         "text": "step3.md"
+      },
+      {
+        "title": "Join a Worker Node",
+        "text": "step4.md"
       }
     ],
     "intro": {
