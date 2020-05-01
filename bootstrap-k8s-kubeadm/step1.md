@@ -20,8 +20,6 @@ Repeat the update on the worker node:
 
 `sudo apt update`{{execute HOST2}}
 
-Ignore the warnings generated at the end of the update.  They pertain to an expired GPG key in one of the package repositories which will not affect us.
-
 ## Check Available Kubernetes Versions
 To see the available Kubernetes versions, run the following on either the master or worker node:
 
