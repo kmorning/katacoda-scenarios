@@ -10,7 +10,7 @@
         "text": "step1.md"
       },
       {
-        "title": "Step 2 - Initialize and Setup the Kubernetes Cluster",
+        "title": "Step 2 - Initialize the Kubernetes Cluster",
         "text": "step2.md"
       }
     ],
