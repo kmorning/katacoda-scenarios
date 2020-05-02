@@ -33,12 +33,15 @@ createPlaybook() {
     command: kubeadm token create --print-join-command
     when: inventory_hostname == "host01"
     register: join_command
-  - name: Copy join command to node01
+  - name: Copy join command to local server
+    when: inventory_hostname == "host01"
+    local_action: copy content="{{ join_command.stdout_lines[0] }}" dest="/tmp/join-command" mode=0700
+  - name: Copy the file from master to node01
+    copy: src=/tmp/join-command dest=/tmp/
     when: inventory_hostname == "node01"
-    local_action: copy content="{{ join_command.stdout_lines[0] }}" dest=/tmp/join-command mode=0777
   - name: Join the node01 to cluster
     when: inventory_hostname == "node01"
-    command: sh /tmp/join-command.sh
+    command: sh /tmp/join-command
 EOF
 }
 
