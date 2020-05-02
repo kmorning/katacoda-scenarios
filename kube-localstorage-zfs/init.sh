@@ -26,7 +26,9 @@ show_progress()
 }
 
 installAnsible() {
-  apt install -y ansible \
+  add-apt-repository -y ppa:ansible/ansible-2.3 \
+  && apt update \
+  && apt install -y ansible \
   && echo "[servers]" > /etc/ansible/hosts \
   && echo "host01 ansible_host=host01" >> /etc/ansible/hosts \
   && echo "node01 ansible_host=node01" >> /etc/ansible/hosts \
