@@ -81,7 +81,8 @@ if [ ${HOST} == "master" ]; then
 
   echo "The Kubernetes cluster in now ready!"
 else
-  echo "Please wait while the Kubernetes cluster is create.  This could take several minutes"
+  reset
+  echo "Please wait while the Kubernetes cluster is created.  This could take several minutes..."
   while [ ! -f /tmp/.initdone ] ; do sleep 2; done; echo "Done"
   #rm /tmp/* -fr
 fi
