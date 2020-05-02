@@ -23,6 +23,15 @@ createPlaybook {
       number: 2
       state: present
       part_start: 48.2GiB
+
+  - name: Running partprobe on /dev/vda
+    command: partprobe /dev/vda
+
+  - name: Signalling done to node01
+    when: inventory_hostname == "node01"
+    file:
+      path: "/tmp/.initdone"
+      state: touch
 EOF
 }
 
