@@ -23,7 +23,7 @@
     "master": [
       {
         "file": "kubernetes-setup.yaml",
-        "target": "~/"
+        "target": "/root/"
       }
     ]
   },
