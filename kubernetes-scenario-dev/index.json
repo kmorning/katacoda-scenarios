@@ -20,7 +20,7 @@
     }
   },
   "assets": {
-    "master": [
+    "host01": [
       {
         "file": "kubernetes-setup.yaml",
         "target": "/root/"

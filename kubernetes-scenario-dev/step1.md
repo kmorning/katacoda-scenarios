@@ -1,2 +1,2 @@
 ## In Development!
-Version 0.0.7 - ansible script
+Version 0.0.8 - ansible script
