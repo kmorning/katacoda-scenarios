@@ -19,6 +19,14 @@
       "text": "finish.md"
     }
   },
+  "assets": {
+    "host01": [
+      {
+        "file": "kubernetes-setup.yaml",
+        "target": "~/"
+      }
+    ]
+  },
   "environment": {
     "uilayout": "terminal-terminal"
   },
