@@ -2,6 +2,29 @@
 
 HOST=$(hostname)
 
+show_progress()
+{
+  echo -n "Please wait while the Kubernetes cluster is created.  This could take several minutes..."
+  local -r pid="${1}"
+  local -r delay='0.75'
+  local spinstr='\|/-'
+  local temp
+  while true; do
+    if [ ! -f /tmp/.initdone ] ; then
+      temp="${spinstr#?}"
+      printf " [%c]  " "${spinstr}"
+      spinstr=${temp}${spinstr%"${temp}"}
+      sleep "${delay}"
+      printf "\b\b\b\b\b\b"
+    else
+      break
+    fi
+  done
+  printf "    \b\b\b\b"
+  echo ""
+  echo "Done"
+}
+
 installAnsible() {
   apt install -y ansible \
   && echo "[servers]" > /etc/ansible/hosts \
@@ -32,8 +55,6 @@ if [ ${HOST} == "master" ]; then
   echo "The Kubernetes cluster in now ready!"
 else
   reset
-  echo "Please wait while the Kubernetes cluster is created.  This could take several minutes..."
-  while [ ! -f /tmp/.initdone ] ; do sleep 2; done; echo "Done"
-  #rm /tmp/* -fr
+  show_progress
 fi
 
