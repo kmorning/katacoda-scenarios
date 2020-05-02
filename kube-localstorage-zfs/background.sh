@@ -22,6 +22,7 @@ createPlaybook {
       device: /dev/vda
       number: 2
       state: present
+      part_start: 48.2GiB
 EOF
 }
 
