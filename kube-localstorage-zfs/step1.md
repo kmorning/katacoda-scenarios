@@ -2,6 +2,11 @@
 We could use simply a normal folder on the local filesystem for a Kubernetes persistent volume, but instead we'll be using ZFS volume.  One of the benefits ZFS provides is automatic filesystem compression, which we'll enable in this scenarion.  We can also use thin provisioning, which we'll cover in a later scenario.
 
 ## Install ZFS
+First update the package list on both nodes:
+
+`sudo apt update`{{execute HOST1}}
+
+`sudo apt update`{{execute HOST2}}
 
 Excute the following command on both master and worker to install the ZFS package:
 
@@ -23,4 +28,44 @@ You list and view the status of the newly create pool with:
 `zpool list`{{execute HOST1}}
 
 `zpool status`{{execute HOST1}}
+
+## Create a ZFS
+
+Now we'll create the ZFS volumes that will be used later for the local persistent volumes for our Kubernetes pods.  The volume on each node will be named vol1:
+
+`zfs create zfspool0/vol0`{{execute HOST1}}
+
+`zfs create zfspool0/vol0`{{execute HOST2}}
+
+The newly created volume can be seen with:
+
+`zfs list`{{execute HOST1}}
+
+You can see the volume has been mounted at /zfspool0/vol0
+
+## Set Quota and Reservation
+
+When you create a ZFS filesystem, by default it consumes all the space in the pool. So, you must specify a quota and reservation for the filesystem.
+
+To set a quote, use zfs set command as shown below. Here we are specifying the quota as 1GB for this filesystem.
+
+`zfs set quota=1G zfspool0/vol0`{{execute HOST1}}
+
+`zfs set quota=1G zfspool0/vol0`{{execute HOST2}}
+
+Next, set the reservation for the filesystem. We will reserve 256M out of 47.&G so that no one can use this space and also it can extend up to 1G based on the quota we set if there is free space available.
+
+`zfs set reservation=256M zfspool0/vol0`{{execute HOST1}}
+
+`zfs set reservation=256M zfspool0/vol0`{{execute HOST1}}
+
+## Enable Compression on ZFS Filesystem
+To set compression on a ZFS dataset, you can set the compression property as shown below. Once this property is set, any large files stored on this ZFS filesystem will be compressed.
+
+`zfs set compression=lzjb zfspool0/vol0`{{execute HOST2}}
+
+`zfs set compression=lzjb zfspool0/vol0`{{execute HOST2}}
+
+
+
 
